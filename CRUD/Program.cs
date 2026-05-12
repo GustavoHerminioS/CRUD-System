@@ -6,7 +6,7 @@
 
         Thread.Sleep(1000);
 
-        Console.WriteLine("Hello, World!");
+        Console.WriteLine("Escolha uma opção:");
         Console.ReadLine();
     }
 }
