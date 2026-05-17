@@ -10,7 +10,7 @@ namespace CRUD.BancoDeDados
         {
             get
             {
-                return @"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CRUD;Integrated Security=True;Encrypt=True";
+                return @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CRUD;Integrated Security=True";
             }
         }
     }

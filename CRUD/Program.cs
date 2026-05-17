@@ -1,12 +1,11 @@
-﻿internal class Program
+﻿using CRUD.BancoDeDados;
+using CRUD.Models;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
         Console.WriteLine("Bem Vindo ao CRUD\n");
-
-        string nome = "";
-        double preco = 0.0;
-        int estoque = 0;
 
         Thread.Sleep(1000);
         while(true){
@@ -22,14 +21,19 @@
             #region Cadastrar Produtos
             if (escolha == 1) // Cadastrar Produtos
             {
+                var produtos = new Produtos();
+
                 Console.WriteLine("Escolha um nome para seu produto: ");
-                nome = Console.ReadLine();
+                produtos.Nome = Console.ReadLine();
 
                 Console.WriteLine("\nEscolha um preço: ");
-                preco = double.Parse(Console.ReadLine());
+                produtos.Preco = double.Parse(Console.ReadLine());
 
                 Console.WriteLine("\nEscolha o estoque: ");
-                estoque = int.Parse(Console.ReadLine());
+                produtos.Estoque = int.Parse(Console.ReadLine());
+
+                var db = new ProdutoBanco();
+                db.Create(produtos);
 
                 Console.WriteLine("Deseja volta ao menu digite 1 ");
                 Console.WriteLine("Deseja sair digite -1 ");
