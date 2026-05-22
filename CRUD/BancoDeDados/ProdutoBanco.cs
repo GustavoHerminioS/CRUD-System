@@ -22,5 +22,32 @@ namespace CRUD.BancoDeDados
             cmd.ExecuteNonQuery();
             cn.Close();
         }
+
+    public List<Produtos> Read()
+        {
+            List<Produtos> produtos = new List<Produtos>();
+
+            string sql = "SELECT * FROM Produtos";
+            var cn = new SqlConnection(ConexaoBanco.Connection);
+            var cmd = new SqlCommand(sql, cn);
+
+            cn.Open();
+            
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Produtos produto = new Produtos();
+
+                    produto.Id = (int)reader["Id"];
+                    produto.Nome = reader["Nome"].ToString();
+                    produto.Preco = Convert.ToDouble(reader["Preco"]);
+                    produto.Estoque = (int)reader["Estoque"];
+
+                    produtos.Add(produto);
+                }
+            }
+            return produtos;
+        }
     }
 }

@@ -53,9 +53,18 @@ internal class Program
             #region Ver Produtos
             else if (escolha == 2) // Ver Produtos
             {
-                Console.WriteLine("Produtos Cadastrados: ");
-                Console.WriteLine($"1. Nome: {nome}, Preço: {preco}, Estoque: {estoque}");
 
+                var db = new ProdutoBanco();
+                var produtos = db.Read();
+
+                foreach (var produto in produtos)
+                {
+                    Console.WriteLine($"ID: {produto.Id}");
+                    Console.WriteLine($"Nome: {produto.Nome}");
+                    Console.WriteLine($"Preço: R$ {produto.Preco}");
+                    Console.WriteLine($"Estoque: {produto.Estoque}");
+                }
+               
                 Console.WriteLine("Deseja volta ao menu digite 1 ");
                 Console.WriteLine("Deseja sair digite -1 ");
 
@@ -74,6 +83,10 @@ internal class Program
             #region Atualizar Produtos
             else if (escolha == 3) // Atualizar Produtos
             {
+
+                var db = new ProdutoBanco();
+                var produtos = db.Read();
+
                 Console.WriteLine("Produtos cadastrados");
                 Console.WriteLine($"1. Nome: {nome}, Preço: {preco}, Estoque: {estoque}");
 
